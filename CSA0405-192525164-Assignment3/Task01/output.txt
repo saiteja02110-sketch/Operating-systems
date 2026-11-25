@@ -1,0 +1,11 @@
+$ gcc -Wall -Wextra hello.c -o hello_dynamic && ./hello_dynamic
+Bank application started
+Hello from hello.c
+$ gcc -fPIC -shared crypto_demo.c -o libcrypto_demo.so
+$ gcc -Wall -Wextra runtime_load.c -o runtime_load -ldl && ./runtime_load
+Result: 93
+$ ls -lh hello_dynamic && ldd hello_dynamic
+-rwxrwx--- 1 root nogroup 16K Nov 25 17:29 hello_dynamic
+	linux-vdso.so.1 (0x0000753ac4feb000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x0000753ac4dc0000)
+	/lib64/ld-linux-x86-64.so.2 (0x0000753ac4fed000)

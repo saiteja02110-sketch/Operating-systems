@@ -1,0 +1,11 @@
+(Code, 0) -> physical 10000
+(Code, 120) -> physical 10120
+(Code, 3999) -> physical 13999
+(Code, 4000) -> invalid: offset >= limit 4000 (protection fault)
+(Data, 0) -> physical 20000
+(Data, 250) -> physical 20250
+(Data, 2999) -> physical 22999
+(Data, 3000) -> invalid: offset >= limit 3000 (protection fault)
+(Stack, 0) -> physical 30000
+(Stack, 1999) -> physical 31999
+(Stack, 2000) -> invalid: offset >= limit 2000 (protection fault)

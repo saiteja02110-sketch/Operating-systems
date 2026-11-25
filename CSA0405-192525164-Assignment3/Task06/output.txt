@@ -1,0 +1,6 @@
+Disks: 6 x 4 TB = 24 TB raw
+RAID 0 : 24 TB usable, fault tolerance: none
+RAID 1 : 12 TB usable (mirrored pairs), tolerates one disk per mirror pair
+RAID 5 : 20 TB usable, tolerates 1 disk failure
+RAID 6 : 16 TB usable, tolerates 2 disk failures
+RAID 10: 12 TB usable (striped mirrors), fast and resilient

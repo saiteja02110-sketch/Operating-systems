@@ -1,0 +1,6 @@
+Sequential page sum=4096
+Touched 4096 pages of 4096 bytes each
+fault rate 1/1,000: EAT = 8100 ns (81.00x base)
+fault rate 1/100,000: EAT = 180 ns (1.80x base)
+fault rate 1/1,000,000: EAT = 108 ns (1.08x base)
+max fault rate for 10% slowdown: p <= 1.250e-06 (about 1 fault per 799,990 accesses)
