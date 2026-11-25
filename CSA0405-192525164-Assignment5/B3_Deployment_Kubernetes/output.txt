@@ -1,0 +1,18 @@
+== deployment.yaml key values (grep) ==
+  replicas: 3
+            - containerPort: 8000
+              cpu: 250m
+              memory: 256Mi
+              cpu: 500m
+              memory: 512Mi
+              path: /health
+  type: LoadBalancer
+      targetPort: 8000
+
+== kubectl check ==
+$ kubectl version
+/bin/bash: line 3: kubectl: command not found
+kubectl/a Kubernetes cluster is NOT available on this machine, so deployment.yaml was NOT applied here.
+
+== comparison.md ==
+Bare metal vs VM vs container comparison is in comparison.md. All measurement fields are intentionally left blank (____ / Record ...) to fill in from real tests on your own machines - no measurements were invented.

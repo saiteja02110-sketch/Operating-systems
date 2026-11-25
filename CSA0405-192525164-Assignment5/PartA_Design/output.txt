@@ -1,0 +1,10 @@
+Part A design document: PartA_Design/design.md
+
+Sections:
+## A1 — Linux System Components
+## A2 — System Administration
+## A3 — Virtualisation
+## A4 — Containerisation
+## A5 — Cloud Deployment and Orchestration
+
+173 PartA_Design/design.md

@@ -1,0 +1,22 @@
+== app.py Python syntax check ==
+$ python3 -m py_compile app.py
+py_compile: OK - app.py syntax is valid
+
+== Flask run attempt ==
+$ python3 -c 'import flask'
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+ModuleNotFoundError: No module named 'flask'
+Flask is NOT installed on this machine, so the Flask app was not run/served here. Install with: pip install -r requirements.txt, then run: gunicorn --bind 0.0.0.0:8000 app:app
+
+== Docker check ==
+$ docker --version
+/bin/bash: line 2: docker: command not found
+Docker is NOT available on this machine (command not found), so 'docker build', 'docker run' and 'docker compose up' were NOT done here. Dockerfile and docker-compose.yml are included for running on a machine with Docker.
+
+== Files in B2_Containers ==
+Dockerfile
+app.py
+docker-compose.yml
+output.txt
+requirements.txt

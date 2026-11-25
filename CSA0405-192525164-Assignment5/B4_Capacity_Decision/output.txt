@@ -1,0 +1,11 @@
+$ python3 capacity_calculator.py
+University Result Portal - capacity estimate
+Students in window: 150000
+Window: 7200 seconds (2 hours)
+Average request rate: 150000/7200 = 20.83 requests/s
+Peak request rate (3x average): 62.5 requests/s
+Assumed capacity per container: 25 requests/s (illustrative)
+Containers needed at peak: ceil(62.5 / 25) = 3
+Recommended replicas: 4-5 (peak requirement plus redundancy/headroom)
+
+Decision: hybrid deployment, 4-5 replicas recommended - see decision.md

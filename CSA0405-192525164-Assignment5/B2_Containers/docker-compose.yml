@@ -1,0 +1,25 @@
+# Local demo only: the database password below is a placeholder for local use.
+# For any real deployment, put credentials in an untracked .env file / secret and
+# override POSTGRES_PASSWORD from there - do not commit real passwords.
+services:
+  portal:
+    build: .
+    ports:
+      - "8000:8000"
+    cpus: 0.5
+    mem_limit: 512m
+    depends_on:
+      - db
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: results
+      POSTGRES_USER: portaluser
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change-this-for-local-demo}
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    cpus: 1.0
+    mem_limit: 1g
+
+volumes:
+  dbdata:

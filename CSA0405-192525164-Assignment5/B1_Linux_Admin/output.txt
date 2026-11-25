@@ -1,0 +1,68 @@
+== disk-alert.sh (threshold 80) ==
+$ bash disk-alert.sh
+(exit 0; no WARNING lines - on this machine no mounted filesystem is >= 80% full; df -P -h usage below)
+Filesystem      Size  Used Avail Use% Mounted on
+overlay         7.5G  100M  7.4G   2% /
+tmpfs           512M  2.0M  511M   1% /tmp
+tmpfs           4.0M     0  4.0M   0% /sys
+tmpfs           4.0M     0  4.0M   0% /dev
+tmpfs           794M     0  794M   0% /dev/shm
+tmpfs           1.6G   40K  1.6G   1% /run
+tmpfs           1.6G  9.4M  1.6G   1% /run/hatch/auth
+/dev/mapper/rv  150G  351M  149G   1% /run/hatch/resume
+tmpfs           5.0M     0  5.0M   0% /run/lock
+/dev/mapper/rv  150G  351M  149G   1% /home/hatch
+overlay         1.6G  9.4M  1.6G   1% /opt/hatch/connectors
+overlay         1.6G  9.4M  1.6G   1% /opt/hatch/bin
+tmpfs           2.0G  1.1M  2.0G   1% /var/tmp
+
+== log_analysis.sh ==
+$ bash log_analysis.sh
+Requests per status code:
+200 4
+302 1
+403 1
+404 1
+Busiest client:
+ 10.0.0.5 4
+Total bytes sent: 43200
+
+== observe_system.sh ==
+$ bash observe_system.sh
+== Processes and CPU (ps aux --sort=-%cpu | head) ==
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root          67  3.6  4.0 1898024 327284 ?      Sl   16:23   2:36 /opt/hatch/bin/hatch daemon --runtime-cell-leader=2456
+root         761  0.0  0.0  35064  6264 ?        Sl   16:23   0:01 /opt/hatch/bin/hatch-execd --runtime-cell-leader=2456
+root           1  0.0  0.0  21064  4924 ?        Ss   16:23   0:00 /usr/lib/systemd/systemd
+root          17  0.0  0.0  33972  3812 ?        Ss   16:23   0:00 /usr/lib/systemd/systemd-journald
+root       13603  0.0  0.0   4476  3512 ?        S    17:34   0:00 /bin/bash --norc --noprofile -c umask 0007; cd ~/workspace/CSA0405-192525164-Assignment5 && chmod +x run_all.sh B1_Linux_Admin/*.sh # PartA output.txt - real summary of design doc { echo "Part A design document: PartA_Design/design.md"; echo; echo "Sections:"; grep '^## ' PartA_Design/design.md; echo; wc -l PartA_Design/design.md; } > PartA_Design/output.txt # B1 output.txt - real runs { echo "== disk-alert.sh (threshold 80) =="; echo "\$ bash disk-alert.sh"; bash B1_Linux_Admin/disk-alert.sh; echo "(exit 0; no WARNING lines - on this machine no mounted filesystem is >= 80% full; df -P -h usage below)"; df -P -h; echo; echo "== log_analysis.sh =="; echo "\$ bash log_analysis.sh"; bash B1_Linux_Admin/log_analysis.sh; echo; echo "== observe_system.sh =="; echo "\$ bash observe_system.sh"; bash B1_Linux_Admin/observe_system.sh 2>&1; echo; echo "== systemd unit =="; echo "result-portal.service is included (User=portal, Restart=on-failure); systemctl was not run for it on this machine."; } > B1_Linux_Admin/output.txt 2>&1 cat B1_Linux_Admin/output.txt | head -100
+root       13628  0.0  0.0   4344  3528 ?        S    17:34   0:00 bash B1_Linux_Admin/observe_system.sh
+root       13629  0.0  0.0   7916  4308 ?        R    17:34   0:00 ps aux --sort=-%cpu
+root       13630  0.0  0.0   2728  1600 ?        S    17:34   0:00 head
+
+== Memory (free -h) ==
+               total        used        free      shared  buff/cache   available
+Mem:           7.7Gi       7.3Gi       143Mi        56Mi       607Mi       448Mi
+Swap:          1.0Gi       329Mi       694Mi
+
+== Disk and filesystems (df -h) ==
+Filesystem      Size  Used Avail Use% Mounted on
+overlay         7.5G  100M  7.4G   2% /
+tmpfs           512M  2.0M  511M   1% /tmp
+tmpfs           4.0M     0  4.0M   0% /sys
+tmpfs           4.0M     0  4.0M   0% /dev
+tmpfs           794M     0  794M   0% /dev/shm
+tmpfs           1.6G   40K  1.6G   1% /run
+tmpfs           1.6G  9.4M  1.6G   1% /run/hatch/auth
+/dev/mapper/rv  150G  351M  149G   1% /run/hatch/resume
+tmpfs           5.0M     0  5.0M   0% /run/lock
+/dev/mapper/rv  150G  351M  149G   1% /home/hatch
+overlay         1.6G  9.4M  1.6G   1% /opt/hatch/connectors
+overlay         1.6G  9.4M  1.6G   1% /opt/hatch/bin
+tmpfs           2.0G  1.1M  2.0G   1% /var/tmp
+
+== Network sockets (ss -tulpen) ==
+Netid State Recv-Q Send-Q Local Address:Port Peer Address:PortProcess
+
+== systemd unit ==
+result-portal.service is included (User=portal, Restart=on-failure); systemctl was not run for it on this machine.
