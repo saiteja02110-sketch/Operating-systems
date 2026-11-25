@@ -1,0 +1,28 @@
+Task 1 - Improved file-system design
+
+Directory structure:
+CollegeServer/
+  Students/
+    192525164/
+      Documents/
+      Assignments/
+      Projects/
+    <register-number>/        (one private folder per student)
+  Staff/
+    <staff-id>/
+  Courses/
+    <course-code>/<semester>/
+  SharedProjects/
+    <project-id>/             (group access only)
+  Backup/                     (administrator only)
+
+Permissions:
+  0700  Private student directory    owner only
+  0600  Private file                 owner read/write only
+  2770  Shared project directory     setgid group folder, group ownership inherited
+  0755  Course material directory    readable by all, writable by owner
+  0644  Course material file         readable by all, writable by owner
+
+Naming: register number is the unique account name; files carry
+course/project and version, e.g. CSA0405_Assignment4_v1.pdf
+Sharing: group ACLs on SharedProjects only; private folders stay 0700.

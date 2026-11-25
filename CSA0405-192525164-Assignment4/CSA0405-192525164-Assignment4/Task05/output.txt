@@ -1,0 +1,29 @@
+Storage options (consistency | availability | performance | cost):
+  NFS
+    Consistency: Depends on server/export and protocol semantics; shared namespace
+    Availability: Single server is a potential single point of failure unless HA is configured
+    Performance: Good LAN access; network/server bottleneck
+    Cost: Low to moderate; server and maintenance
+  HDFS / Ceph
+    Consistency: Distributed metadata/data consistency model; depends on system and configuration
+    Availability: Replication and failover improve availability
+    Performance: Scales with nodes and parallelism
+    Cost: Higher setup and operational complexity
+  Cloud object storage
+    Consistency: Provider-defined strong/eventual consistency; check the service
+    Availability: Multi-zone options and managed service
+    Performance: Internet/network latency; scalable throughput
+    Cost: Usage-based: storage, requests and transfer
+
+Replication: three replicas tolerate a node/disk failure - another
+copy is served and the missing copy is repaired later - at the cost
+of more storage and network bandwidth. Strong consistency makes
+reads reflect completed writes but needs coordination; eventual
+consistency allows temporary differences between replicas.
+
+OS device-management components:
+  Device driver: Translates OS requests into hardware-specific operations
+  Buffering: Temporarily holds data to handle speed differences
+  Caching: Keeps frequently accessed blocks in memory to reduce physical I/O
+  Spooling: Queues work for a device that handles one stream/job at a time
+  Block-device interface: Provides block-addressed read/write operations

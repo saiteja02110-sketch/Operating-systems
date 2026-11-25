@@ -1,0 +1,62 @@
+File-system comparison (max file/volume | journal | snapshots | checksums/CoW):
+  FAT32  | File 4 GiB-1; volume varies | No | No native | No / No
+  NTFS   | Very large (implementation limits) | Metadata journal | Limited (Windows features) | Integrity features / not general CoW
+  ext4   | File up to 16 TiB; volume up to 1 EiB | Yes | No native | Metadata checksums / no general CoW
+  XFS    | Large-scale volumes and files | Metadata journal | No native | Metadata CRC / no general CoW
+  Btrfs  | Large (multi-PiB design limits) | CoW transactional metadata | Yes | Checksums / CoW
+  ZFS    | Very large pools and files | Transactional intent log | Yes | Checksums / CoW
+  APFS   | Large (64-bit addressing) | Copy-on-write design | Yes | Metadata checksums / CoW
+
+ext4 journaling modes:
+  data=journal     Journal file data and metadata -- Strongest protection; slower writes
+  data=ordered     Journal metadata; write data before related metadata commits -- Common default; balances speed and consistency
+  data=writeback   Journal metadata only, no data ordering -- Faster in some workloads; stale data may appear after a crash
+
+Recommended choices:
+  Pen drive shared Windows/Linux: exFAT (or FAT32) -- Portable; exFAT avoids the FAT32 4 GiB file limit
+  Linux database server: ext4 or XFS -- Reliable journaling, mature tools, good performance
+  Laptop: NTFS (Windows) / APFS (macOS) / ext4 (Linux) -- Native OS file system and recovery tools
+  Snapshot backup server: Btrfs or ZFS -- Snapshots, checksums and copy-on-write
+--- df -h (mounted file systems and free space) ---
+Filesystem      Size  Used Avail Use% Mounted on
+overlay         7.5G   99M  7.4G   2% /
+tmpfs           512M  2.0M  511M   1% /tmp
+tmpfs           4.0M     0  4.0M   0% /sys
+tmpfs           4.0M     0  4.0M   0% /dev
+tmpfs           794M     0  794M   0% /dev/shm
+tmpfs           1.6G   40K  1.6G   1% /run
+tmpfs           1.6G  9.4M  1.6G   1% /run/hatch/auth
+/dev/mapper/rv  150G  350M  149G   1% /run/hatch/resume
+tmpfs           5.0M     0  5.0M   0% /run/lock
+/dev/mapper/rv  150G  350M  149G   1% /home/hatch
+overlay         1.6G  9.4M  1.6G   1% /opt/hatch/connectors
+overlay         1.6G  9.4M  1.6G   1% /opt/hatch/bin
+tmpfs           2.0G  1.1M  2.0G   1% /var/tmp
+--- df -i (inode usage) ---
+Filesystem      Inodes IUsed   IFree IUse% Mounted on
+overlay              0     0       0     - /
+tmpfs          1015612    61 1015551    1% /tmp
+tmpfs             1024    10    1014    1% /sys
+tmpfs            65536    28   65508    1% /dev
+tmpfs           409600     1  409599    1% /dev/shm
+tmpfs           819200   112  819088    1% /run
+tmpfs           819200  1499  817701    1% /run/hatch/auth
+/dev/mapper/rv       0     0       0     - /run/hatch/resume
+tmpfs          1015612     2 1015610    1% /run/lock
+/dev/mapper/rv       0     0       0     - /home/hatch
+overlay         819200  1499  817701    1% /opt/hatch/connectors
+overlay         819200  1499  817701    1% /opt/hatch/bin
+tmpfs          1015612   170 1015442    1% /var/tmp
+--- stat and ls -i on this script ---
+  File: inspect_fs.sh
+  Size: 376       	Blocks: 8          IO Block: 4096   regular file
+Device: 0,97	Inode: 27604       Links: 1
+Access: (0770/-rwxrwx---)  Uid: (    0/    root)   Gid: (65534/ nogroup)
+Access: 2026-11-25 17:30:50.283400418 +0000
+Modify: 2026-11-25 17:30:50.283455300 +0000
+Change: 2026-11-25 17:31:04.415547672 +0000
+ Birth: 2026-11-25 17:30:50.283400418 +0000
+27604 inspect_fs.sh
+--- current directory file system ---
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/mapper/rv  150G  350M  149G   1% /home/hatch

@@ -1,0 +1,11 @@
+AAAAAA........CCCCC.............
+E (10 blocks) contiguous: start 19
+E (10 blocks) indexed: index block 6, data blocks 7 8 9 10 11 12 13 29 30 31
+AAAAAAeEEEEEEECCCCCEEEEEEEEEEEEE
+4 GB file: 4294967296 bytes / 4096 = 1048576 blocks
+Pointers per indirect block: 1024
+Inode maximum: 12 + 1024 + 1024^2 + 1024^3 = 1074791436 blocks
+Inode maximum file size: 4402345721856 bytes = 4.00 TiB
+Cost to reach final block: contiguous ~1 data read; linked up to 1,048,576 traversals; indexed ~3 reads (double-indirect + leaf index + data)
+4 TB (decimal): 976562500 blocks, bit vector = 122070313 bytes = 116.4 MiB
+4 TiB: 1073741824 blocks, bit vector = 134217728 bytes = 128.0 MiB

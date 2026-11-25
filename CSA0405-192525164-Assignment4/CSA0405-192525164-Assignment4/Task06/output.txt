@@ -1,0 +1,7 @@
+Catalog: 20000 videos x 1 GB = 20 TB base storage
+With 3 copies: 60 TB raw
+With 20% reserve: 72 TB raw planned
+Monthly transfer: 200000 students x 5 GB = 1000000 GB = 1 PB
+Peak throughput: 10000 concurrent x 5 Mbps = 50000 Mbps = 50 Gbps
+Blocks in a 1 GB file (4 KiB blocks): 262144
+Seeking uses the segment index/offset, not a traversal of all blocks.
