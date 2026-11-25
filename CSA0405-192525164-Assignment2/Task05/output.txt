@@ -1,0 +1,3 @@
+items consumed: 20, sum = 210 (expected 210)
+100/100 runs sum=210
+multi (4 producers, 4 consumers): items consumed: 100, sum = 5050 (expected 5050) - CORRECT, every item consumed exactly once

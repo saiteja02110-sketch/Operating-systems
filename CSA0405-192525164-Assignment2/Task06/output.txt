@@ -1,0 +1,13 @@
+initial state safe: P1 P3 P4 P0 P2
+P1 request: granted, safe sequence P1 P3 P4 P0 P2
+P4 request: must wait (not available)
+P0 request: denied (unsafe)
+
+Banker's safety algorithm timing (m = 3 resource types):
+n =    10 processes:      0.009 ms per safety check (       8.8 us), best of 200 runs
+n =   100 processes:      0.081 ms per safety check (      80.8 us), best of 20 runs
+n =  1000 processes:      0.932 ms per safety check (     931.6 us), best of 3 runs
+Growth check: O(m*n^2) is the WORST case (many sweeps needed).
+In this synthetic safe state almost every process can finish in the
+first sweep, so the measured growth is much gentler (closer to O(m*n)).
+A state where only one process can finish per sweep would approach O(m*n^2).

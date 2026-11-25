@@ -1,0 +1,15 @@
+Gantt: P1(0-3) P2(3-6) P3(6-9) P4(9-12) P1(12-15) P2(15-16) P3(16-19) P4(19-21) P1(21-23) P3(23-26)
+Process TAT WT
+P1        23  15
+P2        15  11
+P3        24  15
+P4        18  13
+Average TAT = 20.00, average WT = 13.50
+
+FCFS: finish=[8, 12, 21, 26] avg TAT = 15.25, avg WT = 8.75
+SJF (non-preemptive): finish=[8, 12, 26, 17] avg TAT = 14.25, avg WT = 7.75
+SRTF (preemptive SJF): finish=[17, 5, 26, 10] avg TAT = 13.00, avg WT = 6.50
+Round Robin q=1: avg TAT = 19.00, avg WT = 12.50, slices (context runs) = 26
+Round Robin q=3: avg TAT = 20.00, avg WT = 13.50, slices (context runs) = 10
+Round Robin q=5: avg TAT = 17.50, avg WT = 11.00, slices (context runs) = 6
+Round Robin q=20: avg TAT = 15.25, avg WT = 8.75, slices (context runs) = 4

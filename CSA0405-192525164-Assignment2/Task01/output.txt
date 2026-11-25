@@ -1,0 +1,14 @@
+exam server (parent) PID = 2233
+parent: created session 1 as child PID = 2235 (state = new -> ready)
+parent: created session 2 as child PID = 2236 (state = new -> ready)
+session 1: child PID = 2235, PPID = 2233, state = running
+session 2: child PID = 2236, PPID = 2233, state = running
+session 1: child PID = 2235 finished work (sum=124999750000), state = terminated
+session 3: child PID = 2237, PPID = 2233, state = running
+session 3: child PID = 2237 finished work (sum=124999750000), state = terminated
+parent: created session 3 as child PID = 2237 (state = new -> ready)
+parent: created session 4 as child PID = 2238 (state = new -> ready)
+session 4: child PID = 2238, PPID = 2233, state = running
+session 2: child PID = 2236 finished work (sum=124999750000), state = terminated
+session 4: child PID = 2238 finished work (sum=124999750000), state = terminated
+parent: all 4 child processes reaped, no zombies left

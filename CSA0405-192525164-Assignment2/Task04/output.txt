@@ -1,0 +1,10 @@
+--- pipe ---
+analyser: 6 readings, average 35.5, max 41
+reader: done
+--- shared memory ---
+analyser: 6 readings, average 35.5, max 41
+reader: done
+--- transfer benchmark ---
+pipe transfer   1 MB:     0.98 ms ( 1022.0 MB/s), bytes verified: True
+pipe transfer  10 MB:     5.04 ms ( 1985.8 MB/s), bytes verified: True
+pipe transfer 100 MB:    50.17 ms ( 1993.3 MB/s), bytes verified: True

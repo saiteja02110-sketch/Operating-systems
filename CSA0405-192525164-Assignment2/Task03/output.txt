@@ -1,0 +1,8 @@
+processing 64 camera frames, fixed work per frame
+pool =  1 threads:   330.56 ms  (speed-up vs 1 thread: 1.00x)
+pool =  4 threads:   251.75 ms  (speed-up vs 1 thread: 1.31x)
+pool =  8 threads:   293.08 ms  (speed-up vs 1 thread: 1.13x)
+pool = 16 threads:   217.12 ms  (speed-up vs 1 thread: 1.52x)
+
+without mutex: counter = 537354 (expected 1000000) - increments lost to races
+with mutex:    counter = 1000000 (expected 1000000) - exact
